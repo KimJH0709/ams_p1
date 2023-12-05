@@ -5,7 +5,7 @@ def opr_error(op1, op2):
         print('[SYETEM] ERROR! 연산자가 올바르지 않습니다.')
         sys.exit(0)
 def correct_opr_error(op):
-    if not(op == "+" or op == "-" or op == "*"):
+    if not(op == "+" or op == "-" or op == "*" or op == "!"):
         print('[SYETEM] ERROR! 사용 가능한 연산자가 아닙니다.')
         sys.exit(0)
 def val_error(val):
@@ -17,4 +17,9 @@ def val_error(val):
 def number_of_inputs_error(length):
     if not(length % 2):
         print('[SYETEM] ERROR! 입력받은 값의 개수가 올바르지 않습니다.')
+        sys.exit(0)
+
+def chech_minus_factorial(num):
+    if num < 0:
+        print('[SYSTEM] ERROR! Out Of Range')
         sys.exit(0)
