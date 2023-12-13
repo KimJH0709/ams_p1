@@ -1,4 +1,4 @@
-from src.three_operations import ThreerBasicOperations
+from three_operations import ThreerBasicOperations
 import unittest
 
 class TestCalculateFactorial(unittest.TestCase):

@@ -1,6 +1,6 @@
-from src.stack import Stack
-from src.error_check import opr_error, correct_opr_error, val_error, number_of_inputs_error
-from src.easter_egg_list import find_easter, able_easter
+from stack import Stack
+from error_check import opr_error, correct_opr_error, val_error, number_of_inputs_error
+from easter_egg_list import find_easter, able_easter
 import string
 import threading
 import sys
@@ -103,7 +103,7 @@ class ThreerBasicOperations:
     if len(infix) != 2:
       return '[ERROR] Input Error'
     try:
-        int(infix[0])
+        infix[0] = int(infix[0])
     except ValueError:
         return '[SYETEM] ERROR! 정수가 아닌 값이 입력되었습니다.'
     if infix[0] < 0:
