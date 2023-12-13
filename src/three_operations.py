@@ -98,7 +98,8 @@ class ThreerBasicOperations:
       else:
         item = int(token)
         s.push(item)
-    
+    return s.pop()
+
   def calculateFactorial(infix):
     if len(infix) != 2:
       return '[ERROR] Input Error'
@@ -109,4 +110,4 @@ class ThreerBasicOperations:
     if infix[0] < 0:
       return '[ERROR] Out Of Range'
     
-    return math.factorial(infix[0])
+    return "= " + str(math.factorial(infix[0]))
