@@ -17,9 +17,13 @@ stop_event = threading.Event()
 
 while True:
     infix= ThreerBasicOperations.make_infix()
-    ThreerBasicOperations.infix_check(infix)
-    postfix = ThreerBasicOperations.make_postfix(infix)
-    result = ThreerBasicOperations.calculate(postfix)
+    mode = ThreerBasicOperations.infix_check(infix) # 0 +,-,* 계산 / 1 factorial 계산
+    if mode == 1:
+        print(ThreerBasicOperations.calculateFactorial(infix))
+    else:
+        postfix = ThreerBasicOperations.make_postfix(infix)
+        result = ThreerBasicOperations.calculate(postfix)
+        print(result)
 
     user_input = input("계속 사용 하시겠습니까? (y/n)")
     if user_input.lower() != 'y':
