@@ -18,8 +18,3 @@ def number_of_inputs_error(length):
     if not(length % 2):
         print('[SYETEM] ERROR! 입력받은 값의 개수가 올바르지 않습니다.')
         sys.exit(0)
-
-def chech_minus_factorial(num):
-    if num < 0:
-        print('[SYSTEM] ERROR! Out Of Range')
-        sys.exit(0)

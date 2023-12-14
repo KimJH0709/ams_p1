@@ -1,10 +1,9 @@
 from stack import Stack
-from error_check import opr_error, correct_opr_error, val_error, number_of_inputs_error, chech_minus_factorial
+from error_check import opr_error, correct_opr_error, val_error, number_of_inputs_error
 from easter_egg_list import find_easter, able_easter
 import string
 import threading
 import sys
-import keyboard
 import math
 
 stop_event = threading.Event()
@@ -22,8 +21,6 @@ class ThreerBasicOperations:
     elif op == '!': return 2
     else: return -1
 
-
-
   #사용자 입력 ex) 5+3*2
   def make_infix():
     infix = []
@@ -40,14 +37,15 @@ class ThreerBasicOperations:
         find_easter(userInput)
       infix.append(userInput)
 
-
     return infix
   
   def infix_check(infix):
-    if infix[1] != '!':
-      number_of_inputs_error(len(infix))  # 저장된 값의 개수가 짝수일 때(마지막 입력 숫자 X) Error!
-      firstOp = ""
-
+    if infix[-1] == '!': # 팩토리얼 계산일 때
+      return 1
+    
+    number_of_inputs_error(len(infix))  # 저장된 값의 개수가 짝수일 때(마지막 입력 숫자 X) Error!
+    
+    firstOp = ""
     if len(infix) > 1:
       firstOp = infix[1]
       correct_opr_error(firstOp) # 첫 번째 연산자 "+", "-", "*" 가 아닐 시 Error!
@@ -57,6 +55,8 @@ class ThreerBasicOperations:
         opr_error(firstOp, item) # 첫 번째 연산자와 다를 시 Error!
       else:
         val_error(item) # 짝수 인덱스의 값이 정수가 아닐 시 Error!
+
+    return 0
    
 
   # 후위표기법 적용 ex) 532*+
@@ -86,7 +86,6 @@ class ThreerBasicOperations:
   #연산결과 출력
   def calculate(postfix):
     s = Stack()
-    fac_check = False
     for token in postfix:
       #연산자 만나면
       if token in ThreerBasicOperations.operator:
@@ -95,37 +94,20 @@ class ThreerBasicOperations:
         if token == '+': s.push(val1 + val2)
         elif token == '-': s.push(val1 - val2)
         elif token == '*': s.push(val1 * val2)
-        elif token == '!':
-          chech_minus_factorial(val2)
-          s.push(math.factorial(val2))
-          fac_check = True
       #피연산자는 스택으로 출력
       else:
         item = int(token)
         s.push(item)
+    return s.pop()
 
-    if fac_check == False:
-      return print(s.pop())
-    else:
-      return print("= "+str(s.pop()))
-  
-  
-ThreerBasicOperations.show_operators()
-
-
-
-
-while True:
+  def calculateFactorial(infix):
+    if len(infix) != 2:
+      return '[ERROR] Input Error'
+    try:
+        infix[0] = int(infix[0])
+    except ValueError:
+        return '[SYETEM] ERROR! 정수가 아닌 값이 입력되었습니다.'
+    if infix[0] < 0:
+      return '[ERROR] Out Of Range'
     
-  infix= ThreerBasicOperations.make_infix()
-  try:
-    ThreerBasicOperations.infix_check(infix)
-  except:
-     continue  # 에러 발생 시 결과값을 출력하지 않고 다시 입력을 받음
-  postfix = ThreerBasicOperations.make_postfix(infix)
-  result = ThreerBasicOperations.calculate(postfix)
-
-  user_input = input("계속 사용 하시겠습니까? (y/n)")
-  if user_input.lower() != 'y':
-    sys.exit()
-    break  # 종료 조건
+    return "= " + str(math.factorial(infix[0]))
