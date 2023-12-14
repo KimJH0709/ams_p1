@@ -40,23 +40,37 @@ class ThreerBasicOperations:
     return infix
   
   def infix_check(infix):
-    if infix[-1] == '!': # 팩토리얼 계산일 때
-      return 1
-    
-    number_of_inputs_error(len(infix))  # 저장된 값의 개수가 짝수일 때(마지막 입력 숫자 X) Error!
-    
+    if infix[-1] == '!':  # 팩토리얼 계산일 때
+        return 1
+
+    # 저장된 값의 개수가 홀수일 때(마지막 입력 숫자 X) Error!
+    error_message = number_of_inputs_error(len(infix))
+    if error_message:
+      print(error_message)
+      return error_message
+
     firstOp = ""
     if len(infix) > 1:
-      firstOp = infix[1]
-      correct_opr_error(firstOp) # 첫 번째 연산자 "+", "-", "*" 가 아닐 시 Error!
+        firstOp = infix[1]
+        error_message = correct_opr_error(firstOp)
+        if error_message:
+              print(error_message)
+              return error_message  # 첫 번째 연산자 "+", "-", "*" 가 아닐 시 Error!
 
     for index, item in enumerate(infix):
-      if index % 2:
-        opr_error(firstOp, item) # 첫 번째 연산자와 다를 시 Error!
-      else:
-        val_error(item) # 짝수 인덱스의 값이 정수가 아닐 시 Error!
+        if index % 2:
+            error_message = opr_error(firstOp, item)  # 첫 번째 연산자와 다를 시 Error!
+            if error_message:
+              print(error_message)
+              return error_message
 
-    return 0
+        else:
+            error_message = val_error(item)
+            if error_message:
+              print(error_message)
+              return error_message  # 짝수 인덱스의 값이 정수가 아닐 시 Error!
+
+    return 2
    
 
   # 후위표기법 적용 ex) 532*+

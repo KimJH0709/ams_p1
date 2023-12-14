@@ -32,3 +32,7 @@ class TestCalculateFactorial(unittest.TestCase):
         infix.append("*")
         infix.append("!")
         self.assertEqual(ThreerBasicOperations.calculateFactorial(infix), "[SYETEM] ERROR! 정수가 아닌 값이 입력되었습니다.") # 정수가 아닌 값 입력
+
+
+if __name__ == '__main__':
+    unittest.main()
