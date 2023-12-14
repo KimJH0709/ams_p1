@@ -6,13 +6,13 @@ class TestCalculateFactorial(unittest.TestCase):
         infix = []
         infix.append(7)
         infix.append("!")
-        self.assertEqual(ThreerBasicOperations.calculateFactorial(infix), 5040) # 7! = 5040
+        self.assertEqual(ThreerBasicOperations.calculateFactorial(infix), "= " + str(5040)) # 7! = 5040
 
     def test_calculate_0_factorial(self):
         infix = []
         infix.append(0)
         infix.append("!")
-        self.assertEqual(ThreerBasicOperations.calculateFactorial(infix), 1) # 0! = 1
+        self.assertEqual(ThreerBasicOperations.calculateFactorial(infix), "= " + str(1)) # 0! = 1
 
     def test_calculate_negative_factorial(self):
         infix = []
