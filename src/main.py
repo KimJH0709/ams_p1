@@ -26,8 +26,4 @@ while True:
         print(result)
     else:
         sys.exit(0)
-
-    user_input = input("계속 사용 하시겠습니까? (y/n)")
-    if user_input.lower() != 'y':
-        stop_event.set()
-        break
+        

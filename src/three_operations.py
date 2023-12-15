@@ -35,6 +35,7 @@ class ThreerBasicOperations:
       #이스터에그 처리
       elif able_easter(userInput):
         find_easter(userInput)
+        sys.exit(0)
       infix.append(userInput)
 
     return infix
