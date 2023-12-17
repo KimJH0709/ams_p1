@@ -118,11 +118,19 @@ class ThreerBasicOperations:
   def calculateFactorial(infix):
     if len(infix) != 2:
       return '[ERROR] Input Error'
-    try:
-        infix[0] = int(infix[0])
-    except ValueError:
-        return '[SYETEM] ERROR! 정수가 아닌 값이 입력되었습니다.'
+    if not(is_integer(infix[0])):
+      return '[SYETEM] ERROR! 정수가 아닌 값이 입력되었습니다.'
+    infix[0] = int(infix[0])
     if infix[0] < 0:
       return '[ERROR] Out Of Range'
     
     return "= " + str(math.factorial(infix[0]))
+  
+def is_integer(n):
+  try:
+      float(n)
+  except ValueError:
+      return False
+  return float(n).is_integer()
+
+  
